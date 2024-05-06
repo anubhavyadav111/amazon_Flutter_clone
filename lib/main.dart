@@ -1,18 +1,35 @@
+import 'package:amazon_clone/common/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constraint/global_variable.dart';
-import 'package:amazon_clone/feature/auth/screens/auth_demo.dart';
 import 'package:amazon_clone/feature/auth/screens/auth_screen.dart';
+import 'package:amazon_clone/provider/user_provider.dart';
 import 'package:amazon_clone/router.dart';
+import 'package:amazon_clone/servies/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+    )
+  ], child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final AuthService authService = AuthService();
+  @override
+  void iniState() {
+    super.initState();
+    authService.getUserData(context: context);
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Amazon Clone',
@@ -26,7 +43,9 @@ class MyApp extends StatelessWidget {
                 color: Colors.black,
               ))),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? const BottomBar()
+          : const AuthScreen(),
     );
   }
 }
