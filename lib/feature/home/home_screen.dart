@@ -1,5 +1,5 @@
 import 'package:amazon_clone/constraint/global_variable.dart';
-import 'package:amazon_clone/feature/account/carousel_image.dart';
+import 'package:amazon_clone/feature/account/widgets/carousel_image.dart';
 import 'package:amazon_clone/feature/home/widgets/address_box.dart';
 import 'package:amazon_clone/feature/home/widgets/deal_of_day.dart';
 import 'package:amazon_clone/feature/home/widgets/top_categories.dart';
