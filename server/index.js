@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 //import like packesig in flutter
 //IMPORTS FROM OTHER FILES
 const authRouter = require("./routes/auth");
+const adminRouter = require('./routes/admin');
 
 //INIT
 
@@ -18,6 +19,7 @@ const DB ="mongodb+srv://anubhavyadavdec10:o8j2eGRDWAEcMNB8@cluster0.uu11fh5.mon
 //CLIENT -> SERVER -> CLIENT 
 app.use(express.json())
 app.use(authRouter);
+app.use(adminRouter);
 
 
 
