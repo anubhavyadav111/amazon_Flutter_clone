@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 class Product {
@@ -37,7 +35,7 @@ class Product {
     return Product(
       name: map['name'] ?? '',
       description: map['description'] ?? '',
-      quantity: map['quantity'] ?? 0.0,
+      quantity: map['quantity']?.toDouble() ?? 0.0,
       images: List<String>.from(map['images']),
       category: map['category'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
