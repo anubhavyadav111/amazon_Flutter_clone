@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 //IMPORTS FROM OTHER FILES
 const authRouter = require("./routes/auth");
 const adminRouter = require('./routes/admin');
+const productRouter = require('./routes/product');
 
 //INIT
 
@@ -21,6 +22,7 @@ const DB ="mongodb+srv://anubhavyadavdec10:o8j2eGRDWAEcMNB8@cluster0.uu11fh5.mon
 app.use(express.json())
 app.use(authRouter);
 app.use(adminRouter);
+app.use(productRouter);
 
 
 
