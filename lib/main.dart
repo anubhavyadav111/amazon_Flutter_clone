@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
           scaffoldBackgroundColor: GlobalVariables.backgroundColor,
           colorScheme:
               const ColorScheme.light(primary: GlobalVariables.secondaryColor),
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
               elevation: 0,
               iconTheme: IconThemeData(
                 color: Colors.black,

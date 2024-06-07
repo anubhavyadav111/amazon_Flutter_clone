@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:amazon_clone/common/widgets/bottom_bar.dart';
 import 'package:amazon_clone/constraint/error_handling.dart';
 import 'package:amazon_clone/constraint/global_variable.dart';
