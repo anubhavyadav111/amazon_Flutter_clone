@@ -3,7 +3,9 @@ import 'package:amazon_clone/feature/Admin/screens/add_product_screen.dart';
 import 'package:amazon_clone/feature/auth/screens/auth_screen.dart';
 import 'package:amazon_clone/feature/home/category_deal_screen.dart';
 import 'package:amazon_clone/feature/home/home_screen.dart';
+import 'package:amazon_clone/feature/product_detail/screens/product_detail_screens.dart';
 import 'package:amazon_clone/feature/search/screen/search_screen.dart';
+import 'package:amazon_clone/models/product.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +45,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => SearchScreen(searchQuery: searchQuery),
       );
+    case ProductDetailScreen.routeName:
+      var product = routeSettings.arguments as Product;
+      return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (_) => ProductDetailScreen(product: product));
+
     default:
       return MaterialPageRoute(
         settings: routeSettings,
