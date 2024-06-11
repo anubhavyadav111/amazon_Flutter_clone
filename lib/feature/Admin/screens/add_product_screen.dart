@@ -96,9 +96,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
                             (i) {
                               return Builder(
                                 builder: (BuildContext context) => Image.file(
+                                
                                   i,
                                   fit: BoxFit.cover,
                                   height: 200,
+                                  
                                 ),
                               );
                             },

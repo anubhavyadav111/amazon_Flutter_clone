@@ -69,8 +69,6 @@ class _AuthScreenState extends State<AuthScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            
-
             ListTile(
               tileColor: _auth == Auth.signup
                   ? GlobalVariables.backgroundColor
@@ -127,7 +125,6 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
               ),
-            
             ListTile(
               tileColor: _auth == Auth.signin
                   ? GlobalVariables.backgroundColor
@@ -163,6 +160,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       CustomTextField(
                         controller: _passwordController,
                         hinttext: "Password",
+                        hide: true,
                       ),
                       const SizedBox(height: 10),
                       CustomButton(

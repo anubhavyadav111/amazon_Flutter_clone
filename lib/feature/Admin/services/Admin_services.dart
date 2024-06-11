@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:amazon_clone/models/order.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -123,4 +124,6 @@ class AdminServices {
       showSnackBar(context, e.toString());
     }
   }
+
+  void changeOrderStatus({required BuildContext context, required int status, required Order order, required Null Function() onSuccess}) {}
 }
