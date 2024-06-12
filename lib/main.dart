@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void iniState() {
     super.initState();
-    authService.getUserData(context: context);
+    authService.getUserData(context);
   }
 
   Widget build(BuildContext context) {

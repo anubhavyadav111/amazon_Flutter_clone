@@ -10,6 +10,9 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+
+
 class AuthService {
   // sign up user
   void signUpUser({
@@ -38,7 +41,6 @@ class AuthService {
         },
       );
 
-      ////ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
@@ -71,9 +73,6 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-      print(res.body);
-
-      ////ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
@@ -82,7 +81,10 @@ class AuthService {
           Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           Navigator.pushNamedAndRemoveUntil(
-              context, BottomBar.routeName, (route) => false);
+            context,
+            BottomBar.routeName,
+            (route) => false,
+          );
         },
       );
     } catch (e) {
@@ -90,43 +92,34 @@ class AuthService {
     }
   }
 
-// to get user get
-  void getUserData({
-    required BuildContext context,
-  }) async {
+  // get user data
+  void getUserData(
+    BuildContext context,
+  ) async {
     try {
-      // http.Response res = await http.post(
-      //   Uri.parse('$uri/api/signin'),
-      //   body: jsonEncode({
-      //     'email': email,
-      //     'password': password,
-      //   }),
-      //   headers: <String, String>{
-      //     'Content-Type': 'application/json; charset=UTF-8',
-      //   },
-      //  );
-
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('x-auth-token');
 
       if (token == null) {
         prefs.setString('x-auth-token', '');
       }
-      var tokenRes = await http.post(Uri.parse('$uri/tokenIsValid'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': token!
-          });
+
+      var tokenRes = await http.post(
+        Uri.parse('$uri/tokenIsValid'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': token!
+        },
+      );
 
       var response = jsonDecode(tokenRes.body);
 
       if (response == true) {
-        //get user data
         http.Response userRes = await http.get(
           Uri.parse('$uri/'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': token!
+            'x-auth-token': token
           },
         );
 

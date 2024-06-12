@@ -1,5 +1,6 @@
 import 'package:amazon_clone/common/widgets/custom_button.dart';
 import 'package:amazon_clone/constraint/global_variable.dart';
+import 'package:amazon_clone/feature/address/screens/address_screen.dart';
 import 'package:amazon_clone/feature/cart/widgets/cart_product.dart';
 import 'package:amazon_clone/feature/cart/widgets/cart_subtotal.dart';
 import 'package:amazon_clone/feature/home/widgets/address_box.dart';
@@ -20,13 +21,13 @@ class _CartScreenState extends State<CartScreen> {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
 
-  // void navigateToAddress(int sum) {
-  //   Navigator.pushNamed(
-  //     context,
-  //     AddressScreen.routeName,
-  //     arguments: sum.toString(),
-  //   );
-  // }
+  void navigateToAddress(int sum) {
+    Navigator.pushNamed(
+      context,
+      AddressScreen.routeName,
+      arguments: sum.toString(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +118,8 @@ class _CartScreenState extends State<CartScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CustomButton(
-                onTap: () {},
                 text: 'Proceed to Buy (${user.cart.length} items)',
-                //  onTap: () => navigateToAddress(sum),
+                onTap: () => navigateToAddress(sum),
                 color: Colors.yellow[600],
               ),
             ),
@@ -132,9 +132,12 @@ class _CartScreenState extends State<CartScreen> {
             ListView.builder(
               itemCount: user.cart.length,
               shrinkWrap: true,
+              scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return CartProduct(
-                  index: index,
+                return SingleChildScrollView(
+                  child: CartProduct(
+                    index: index,
+                  ),
                 );
               },
             ),
