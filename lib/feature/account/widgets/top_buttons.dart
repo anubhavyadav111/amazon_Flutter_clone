@@ -1,8 +1,9 @@
+import 'package:amazon_clone/feature/account/services/account_services.dart';
 import 'package:amazon_clone/feature/account/widgets/account_button.dart';
 import 'package:flutter/material.dart';
 
 class TopButtons extends StatelessWidget {
-  const TopButtons({super.key});
+  const TopButtons({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +13,11 @@ class TopButtons extends StatelessWidget {
           children: [
             AccountButton(
               text: 'Your Orders',
-              onTab: () {},
+              onTap: () {},
             ),
             AccountButton(
               text: 'Turn Seller',
-              onTab: () {},
+              onTap: () {},
             ),
           ],
         ),
@@ -25,14 +26,14 @@ class TopButtons extends StatelessWidget {
           children: [
             AccountButton(
               text: 'Log Out',
-              onTab: () {},
+              onTap: () => AccountServices().logOut(context),
             ),
             AccountButton(
-              text: 'Your Wish LIst',
-              onTab: () {},
+              text: 'Your Wish List',
+              onTap: () {},
             ),
           ],
-        )
+        ),
       ],
     );
   }

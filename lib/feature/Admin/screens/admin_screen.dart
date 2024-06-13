@@ -1,4 +1,5 @@
 import 'package:amazon_clone/constraint/global_variable.dart';
+import 'package:amazon_clone/feature/Admin/screens/analytics_screens.dart';
 import 'package:amazon_clone/feature/Admin/screens/order_screens.dart';
 import 'package:amazon_clone/feature/Admin/screens/post_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,7 @@ class _AdminScreenState extends State<AdminScreen> {
 
   List<Widget> pages = [
     const PostScreen(),
-    const Center(
-      child: Text("Analstics"),
-    ),
+    const AnalyticsScreen(),
     const OrderScreen()
   ];
   void updatePage(int page) {
