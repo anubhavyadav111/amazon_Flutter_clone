@@ -1,4 +1,5 @@
 import 'package:amazon_clone/constraint/global_variable.dart';
+import 'package:amazon_clone/feature/Admin/screens/order_screens.dart';
 import 'package:amazon_clone/feature/Admin/screens/post_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,13 +16,11 @@ class _AdminScreenState extends State<AdminScreen> {
   double bottomBarBorderWidth = 5;
 
   List<Widget> pages = [
-    PostScreen(),
+    const PostScreen(),
     const Center(
       child: Text("Analstics"),
     ),
-    const Center(
-      child: Text('Post Card'),
-    ),
+    const OrderScreen()
   ];
   void updatePage(int page) {
     setState(() {
@@ -107,7 +106,7 @@ class _AdminScreenState extends State<AdminScreen> {
               decoration: BoxDecoration(
                   border: Border(
                 top: BorderSide(
-                    color: _page == 1
+                    color: _page == 2
                         ? GlobalVariables.selectedNavBarColor
                         : GlobalVariables.backgroundColor,
                     width: bottomBarBorderWidth),

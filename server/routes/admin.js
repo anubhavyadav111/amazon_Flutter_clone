@@ -2,6 +2,7 @@ const express = require('express');
 const adminRouter = express.Router();
 const admin = require('../middlewares/admin');
 const { Product } = require("../models/product");
+const Order = require('../models/order');
 
 //Creating an Admin Middleware
 
@@ -51,7 +52,49 @@ adminRouter.post("/admin/delete-product" , admin , async(req, res)=> {
   catch(e){
     res.json(500).json({error: e.message});
   }
-})
+});
+
+
+// fetech-the-order -> this is my API+++++++
+adminRouter.get("/admin/get-orders", admin , async (req, res) => {
+  try {
+    //const {id} = req.body;
+    const orders = await Order.find({});
+    res.json(orders);
+  } catch (e) {
+    res.status(500).json({error:e.message});
+    
+  }
+});
+
+
+
+// adminRouter.post("/admin/change-order-status" , admin , async(req, res)=> {
+//   try{
+//        const {id , status } = req.body;
+//        let order = await Order.findBy(id);
+//        order.status = status;
+//        order = await order.save();
+//        res.json(order);
+//       // res.send("All went well!");
+//   }
+//   catch(e){
+//     res.json(500).json({error: e.message});
+//   }
+// });
+adminRouter.post("/admin/change-order-status", admin, async (req, res) => {
+  try {
+    const { id, status } = req.body;
+    let order = await Order.findById(id);
+    order.status = status;
+    order = await order.save();
+    res.json(order);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
 
 
 module.exports = adminRouter;
